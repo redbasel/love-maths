@@ -80,10 +80,15 @@ function calculateCorrectAnswer() {
 }
 
 function incrementScore() {
+    let oldScore = parsInt(document.getElementById("score").innerText)
+    document.getElementById("score").innerText = ++oldScore;
 
 }
 
 function incrementWrongAnswer() {
+
+    let oldScore = parsInt(document.getElementById("incorrect").innerText)
+    document.getElementById("incorrect").innerText = ++oldScore;
 
 }
 
