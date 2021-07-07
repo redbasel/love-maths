@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit");
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
-                alert(`You clicked ${gameType}`);
+                runGame(gameType);
 
             }
             
@@ -40,12 +40,42 @@ function runGame(gameType) {
 
 }
 
-
+/**
+ * checks answer agaisnt first item in array of calculatedcorrectaneer array
+ */
 function checkAnswer() {
 
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    if (isCorrect) {
+        alert("Hey! Yougot it right! :D");
+    }else {
+        alert(`Aww.... you answered %{userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+    }
+
+    runGame(calculatedAnswer[1]);
+    
+
+
 }
+/** gets the operande and operator directly frm th edom returns corretanswer */
 
 function calculateCorrectAnswer() {
+
+    let operand1 = parseInt(document.getElementById('operand1').innerText);
+    let operand2 = parseInt(document.getElementById('operand2').innerText);
+    let operator = document.getElementById('operator').innerText);
+
+    if (operator === "+") {
+        return [operand1 + operand2, "addition"];
+    } else {
+        alert(`Unimplemented oeprator ${operator}`);
+        throw `Unimplemented operator ${operator}. Aborting`;
+
+    }
+    }
 
 }
 
